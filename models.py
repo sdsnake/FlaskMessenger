@@ -34,7 +34,8 @@ class Room(db.Model):
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    messages = relationship("Message", backref='room', lazy = True, cascade="all, delete-orphan")
+    messages = db.relationship("Message", backref='room',
+                               lazy=True, cascade="all, delete-orphan")
 
     def __init__(self, name):
         self.name = name
