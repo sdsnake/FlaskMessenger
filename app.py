@@ -7,6 +7,7 @@ import random
 import json
 
 from models import setup_db, Room, Message
+from auth import AuthError, requires_auth
 
 
 def create_app(test_config=None):
@@ -34,4 +35,72 @@ def create_app(test_config=None):
     @app.route('/', methods=['GET'])
     def get_home():
         return "hello home"
+
+    @app.route('/messages/', methods=['GET'])
+    def get_messages():
+        try:
+            messages = Message.query.all()
+            formated_messages = [
+                message.format() for message in messages]
+            return jsonify({
+                'success': True,
+                'messages': formated_messages
+            })
+        except:
+            abort(422)
+
+    @app.route('/rooms/', methods=['GET'])
+    def get_rooms():
+        return "hello home"
+
+    @app.route('/messages/', methods=['POST'])
+    def new_message():
+        return "hello home"
+
+    @app.route('/messages/', methods=['PATCH'])
+    def update_message():
+        return "hello home"
+
+    @app.route('/messages/', methods=['DELETE'])
+    def delete_message():
+        return "hello home"
+
+        # Error Handling
+    '''
+    error handling for unprocessable entity
+    '''
+    @app.errorhandler(422)
+    def unprocessable(error):
+        return jsonify({
+            "success": False,
+            "error": 422,
+            "message": "unprocessable"
+        }), 422
+
+    '''
+        implement error handler for 404
+        error handler should conform to general task above 
+    '''
+
+    @app.errorhandler(404)
+    def not_found(error):
+        return jsonify({
+            "success": False,
+            "error": 404,
+            "message": "resource not found"
+        }), 404
+
+    '''
+        error handler for AuthError
+        error handler should conform to general task above 
+    '''
+
+    @app.errorhandler(AuthError)
+    def auth_error(error):
+        return jsonify({
+            "success": False,
+            "error": error.status_code,
+            "message": error.error['description']
+        }), error.status_code
+
     return app

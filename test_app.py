@@ -29,3 +29,15 @@ class MessagorTestCase(unittest.TestCase):
     def tearDown(self):
         """Executed after reach test"""
         pass
+
+    def test_get_messages(self):
+        res = self.client().get('/messages/')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+
+
+# Make the tests conveniently executable
+if __name__ == "__main__":
+    unittest.main()
