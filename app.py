@@ -48,6 +48,7 @@ def create_app(test_config=None):
                 'messages': formated_messages
             })
         except:
+            print(sys.exc_info())
             abort(422)
 
     @app.route('/rooms/', methods=['GET'])

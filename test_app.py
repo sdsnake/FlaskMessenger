@@ -8,7 +8,7 @@ from models import setup_db, Room, Message
 
 
 class MessagorTestCase(unittest.TestCase):
-    """This class represents the trivia test case"""
+    """This class represents the messagor test case"""
 
     def setUp(self):
         """Define test variables and initialize app."""
@@ -56,6 +56,18 @@ class MessagorTestCase(unittest.TestCase):
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
+
+    def test_delete_question(self):
+        res = self.client().delete('/rooms/2/messages/')
+        data = json.loads(res.data)
+
+        message = Message.query.filter(Message.id == 2).one_or_none()
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertEqual(data['deleted'], 2)
+        self.assertTrue(len(data['messages']))
+        self.assertEqual(message, None)
 
 
 # Make the tests conveniently executable
