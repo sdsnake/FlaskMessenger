@@ -31,7 +31,7 @@ class MessagorTestCase(unittest.TestCase):
         pass
 
     def test_get_messages(self):
-        res = self.client().get('/messages/')
+        res = self.client().get('/rooms/1/messages/')
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
