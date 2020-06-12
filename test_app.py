@@ -37,6 +37,13 @@ class MessagorTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
 
+    def test_get_rooms(self):
+        res = self.client().get('/rooms/')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+
 
 # Make the tests conveniently executable
 if __name__ == "__main__":

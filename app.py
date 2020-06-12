@@ -36,10 +36,10 @@ def create_app(test_config=None):
     def get_home():
         return "hello home"
 
-    @app.route('/messages/', methods=['GET'])
-    def get_messages():
+    @app.route('/rooms/<int:room_id>/messages/', methods=['GET'])
+    def get_messages(room_id):
         try:
-            messages = Message.query.all()
+            messages = Message.query.filter(Message.room_id == room_id).all()
             formated_messages = [
                 message.format() for message in messages]
             return jsonify({
@@ -51,11 +51,31 @@ def create_app(test_config=None):
 
     @app.route('/rooms/', methods=['GET'])
     def get_rooms():
-        return "hello home"
+        try:
+            rooms = Room.query.all()
+            formated_rooms = [
+                room.format() for room in rooms]
+            return jsonify({
+                'success': True,
+                'rooms': formated_rooms
+            })
+        except:
+            abort(422)
 
-    @app.route('/messages/', methods=['POST'])
-    def new_message():
-        return "hello home"
+    @app.route('/rooms/<int:room_id>/messages/', methods=['POST'])
+    def new_message(room_id):
+        room = Room.query.get(room_id)
+        print(room.id)
+        print(room_id)
+        try:
+            body = request.get_json()
+            content = body.get('content', None)
+            new_message = Message(content=content, room_id=room.id)
+            new_message.insert()
+
+            return jsonify({"success": True, "messages": new_message})
+        except:
+            abort(422)
 
     @app.route('/messages/', methods=['PATCH'])
     def update_message():
