@@ -5,6 +5,7 @@ from flask_cors import CORS, cross_origin
 from sqlalchemy.sql.expression import func
 import random
 import json
+import sys
 
 from models import setup_db, Room, Message
 from auth import AuthError, requires_auth
@@ -64,17 +65,21 @@ def create_app(test_config=None):
 
     @app.route('/rooms/<int:room_id>/messages/', methods=['POST'])
     def new_message(room_id):
-        room = Room.query.get(room_id)
-        print(room.id)
+        active_room = Room.query.get(room_id)
+        print(active_room)
         print(room_id)
         try:
             body = request.get_json()
             content = body.get('content', None)
-            new_message = Message(content=content, room_id=room.id)
+            print(content)
+            new_message = Message(content=content)
+            new_message.room = active_room
+            print(new_message.room)
             new_message.insert()
 
-            return jsonify({"success": True, "messages": new_message})
+            return jsonify({"success": True, "messages": new_message.content})
         except:
+            print(sys.exc_info())
             abort(422)
 
     @app.route('/messages/', methods=['PATCH'])

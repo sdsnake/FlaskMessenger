@@ -79,3 +79,7 @@ class Message(db.Model):
             'id': self.id,
             'content': self.content
         }
+
+    def insert(self):
+        db.session.add(self)
+        db.session.commit()

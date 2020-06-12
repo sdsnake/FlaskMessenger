@@ -30,12 +30,24 @@ class MessagorTestCase(unittest.TestCase):
         """Executed after reach test"""
         pass
 
+    def test_create_new_message(self):
+        new_message = {
+            'content': 'test'
+        }
+        res = self.client().post('/rooms/1/messages/', json=new_message)
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(len(data['messages']))
+
     def test_get_messages(self):
         res = self.client().get('/rooms/1/messages/')
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
+        print(data['messages'])
         self.assertTrue(data['messages'])
 
     def test_get_rooms(self):
