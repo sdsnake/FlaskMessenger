@@ -87,9 +87,22 @@ def create_app(test_config=None):
     def update_message():
         return "hello home"
 
-    @app.route('/messages/', methods=['DELETE'])
-    def delete_message():
-        return "hello home"
+    @app.route('/messages/<int:message_id>/', methods=['DELETE'])
+    def delete_message(message_id):
+        try:
+            message = Message.query.filter(
+                Message.id == message_id).one_or_none()
+            message.delete()
+            messages = Message.query.filter(
+                Message.room_id == message.room_id).all()
+            print(message)
+            formated_messages = [
+                message.format() for message in messages]
+
+            return jsonify({"success": True, 'deleted': message_id, "messages": formated_messages})
+        except:
+            print(sys.exc_info())
+            abort(422)
 
         # Error Handling
     '''
@@ -105,7 +118,7 @@ def create_app(test_config=None):
 
     '''
         implement error handler for 404
-        error handler should conform to general task above 
+        error handler should conform to general task above
     '''
 
     @app.errorhandler(404)
@@ -118,7 +131,7 @@ def create_app(test_config=None):
 
     '''
         error handler for AuthError
-        error handler should conform to general task above 
+        error handler should conform to general task above
     '''
 
     @app.errorhandler(AuthError)

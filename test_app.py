@@ -57,15 +57,15 @@ class MessagorTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
 
-    def test_delete_question(self):
-        res = self.client().delete('/rooms/2/messages/')
+    def test_delete_message(self):
+        res = self.client().delete('/messages/3/')
         data = json.loads(res.data)
 
-        message = Message.query.filter(Message.id == 2).one_or_none()
+        message = Message.query.filter(Message.id == 3).one_or_none()
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
-        self.assertEqual(data['deleted'], 2)
+        self.assertEqual(data['deleted'], 3)
         self.assertTrue(len(data['messages']))
         self.assertEqual(message, None)
 
