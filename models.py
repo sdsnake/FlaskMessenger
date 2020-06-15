@@ -86,7 +86,7 @@ class Message(db.Model):
         db.session.commit()
 
     def format(self):
-    return {
-        'id': self.id,
-        'content': self.content
-    }
+        return {
+            'id': self.id,
+            'content': self.content
+        }
