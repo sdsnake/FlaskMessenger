@@ -69,6 +69,16 @@ class MessagorTestCase(unittest.TestCase):
         self.assertTrue(len(data['messages']))
         self.assertEqual(message, None)
 
+    def test_update_message_rating(self):
+        res = self.client().patch(
+            '/messages/5', json={'content': 'test change'})
+        data = json.loads(res.data)
+        message = Message.query.filter(Message.id == 5).one_or_none()
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertEqual(message.format()['content'], 'test change')
+
 
 # Make the tests conveniently executable
 if __name__ == "__main__":
