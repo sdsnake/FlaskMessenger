@@ -78,14 +78,28 @@ def create_app(test_config=None):
             print(new_message.room)
             new_message.insert()
 
-            return jsonify({"success": True, "messages": new_message.content})
+            return jsonify({"success": True, "message": new_message.content})
         except:
             print(sys.exc_info())
             abort(422)
 
-    @app.route('/messages/', methods=['PATCH'])
-    def update_message():
-        return "hello home"
+    @app.route('/messages/<int:message_id>/', methods=['PATCH'])
+    def update_message(message_id):
+        body = request.get_json()
+        try:
+            message = Message.query.filter(
+                Message.id == message_id).one_or_none()
+
+            if message is None:
+                abort(404)
+            message.content = body.get('content')
+            message.update()
+            return jsonify({
+                'success': True,
+                'message': message.content
+            })
+        except:
+            abort(404)
 
     @app.route('/messages/<int:message_id>/', methods=['DELETE'])
     def delete_message(message_id):

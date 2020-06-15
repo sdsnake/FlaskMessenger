@@ -39,7 +39,7 @@ class MessagorTestCase(unittest.TestCase):
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
-        self.assertTrue(len(data['messages']))
+        self.assertTrue(len(data['message']))
 
     def test_get_messages(self):
         res = self.client().get('/rooms/1/messages/')
@@ -58,20 +58,20 @@ class MessagorTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
 
     def test_delete_message(self):
-        res = self.client().delete('/messages/3/')
+        res = self.client().delete('/messages/6/')
         data = json.loads(res.data)
 
-        message = Message.query.filter(Message.id == 3).one_or_none()
+        message = Message.query.filter(Message.id == 6).one_or_none()
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
-        self.assertEqual(data['deleted'], 3)
+        self.assertEqual(data['deleted'], 6)
         self.assertTrue(len(data['messages']))
         self.assertEqual(message, None)
 
     def test_update_message_rating(self):
         res = self.client().patch(
-            '/messages/5', json={'content': 'test change'})
+            '/messages/5/', json={'content': 'test change'})
         data = json.loads(res.data)
         message = Message.query.filter(Message.id == 5).one_or_none()
 
