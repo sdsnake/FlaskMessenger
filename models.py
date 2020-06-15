@@ -51,9 +51,6 @@ class Room(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-    def update(self):
-        db.session.commit()
-
     def format(self):
         return {
             'id': self.id,
@@ -77,12 +74,6 @@ class Message(db.Model):
     def __init__(self, content):
         self.content = content
 
-    def format(self):
-        return {
-            'id': self.id,
-            'content': self.content
-        }
-
     def insert(self):
         db.session.add(self)
         db.session.commit()
@@ -93,3 +84,9 @@ class Message(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+
+    def format(self):
+    return {
+        'id': self.id,
+        'content': self.content
+    }
