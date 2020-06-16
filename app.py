@@ -106,6 +106,8 @@ def create_app(test_config=None):
         try:
             message = Message.query.filter(
                 Message.id == message_id).one_or_none()
+            if message is None:
+                abort(404)
             message.delete()
             messages = Message.query.filter(
                 Message.room_id == message.room_id).all()
