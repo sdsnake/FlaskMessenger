@@ -41,6 +41,17 @@ class MessagorTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
         self.assertTrue(len(data['message']))
 
+    def test_cannot_create_null_message(self):
+        new_message = {
+            'contnt': None
+        }
+        res = self.client().post('/rooms/1/messages/', json=new_message)
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 422)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'unprocessable')
+
     def test_get_messages(self):
         res = self.client().get('/rooms/1/messages/')
         data = json.loads(res.data)
@@ -49,6 +60,14 @@ class MessagorTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
         print(data['messages'])
         self.assertTrue(data['messages'])
+
+    def test_error_get_messages(self):
+        res = self.client().get('/rooms/67/messages/')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 422)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'unprocessable')
 
     def test_get_rooms(self):
         res = self.client().get('/rooms/')

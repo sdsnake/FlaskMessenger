@@ -40,7 +40,10 @@ def create_app(test_config=None):
     @app.route('/rooms/<int:room_id>/messages/', methods=['GET'])
     def get_messages(room_id):
         try:
+
             messages = Message.query.filter(Message.room_id == room_id).all()
+            if not messages:
+                abort(404)
             formated_messages = [
                 message.format() for message in messages]
             return jsonify({
@@ -71,9 +74,11 @@ def create_app(test_config=None):
         print(room_id)
         try:
             body = request.get_json()
-            content = body.get('content', None)
+            content = body.get('content')
             print(content)
             new_message = Message(content=content)
+            if content is None:
+                abort(422)
             new_message.room = active_room
             print(new_message.room)
             new_message.insert()
