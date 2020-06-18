@@ -76,6 +76,13 @@ class MessagorTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
 
+    def test_error_get_rooms(self):
+        res = self.client().get('/rooms/', json={})
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], False)
+
     def test_delete_message(self):
         res = self.client().delete('/messages/6/')
         data = json.loads(res.data)
@@ -88,7 +95,17 @@ class MessagorTestCase(unittest.TestCase):
         self.assertTrue(len(data['messages']))
         self.assertEqual(message, None)
 
-    def test_update_message_rating(self):
+    def test_error_delete_message(self):
+        res = self.client().delete('/messages/99/')
+        data = json.loads(res.data)
+
+        message = Message.query.filter(Message.id == 99).one_or_none()
+
+        self.assertEqual(res.status_code, 422)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'unprocessable')
+
+    def test_update_message(self):
         res = self.client().patch(
             '/messages/5/', json={'content': 'test change'})
         data = json.loads(res.data)
@@ -97,6 +114,16 @@ class MessagorTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
         self.assertEqual(message.format()['content'], 'test change')
+
+    def test_error_update_message(self):
+        res = self.client().patch(
+            '/messages/75/', json={'content': 'test error change'})
+        data = json.loads(res.data)
+        message = Message.query.filter(Message.id == 5).one_or_none()
+
+        self.assertEqual(res.status_code, 404)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'resource not found')
 
 
 # Make the tests conveniently executable

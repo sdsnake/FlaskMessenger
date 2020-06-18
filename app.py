@@ -1,4 +1,7 @@
 import os
+from functools import wraps
+from os import environ as env
+from werkzeug.exceptions import HTTPException
 from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS, cross_origin
@@ -6,8 +9,11 @@ from sqlalchemy.sql.expression import func
 import random
 import json
 import sys
-
+from dotenv import load_dotenv, find_dotenv
+from flask import session
 from models import setup_db, Room, Message
+from authlib.integrations.flask_client import OAuth
+from six.moves.urllib.parse import urlencode
 from auth import AuthError, requires_auth
 
 
@@ -21,6 +27,23 @@ def create_app(test_config=None):
   '''
     CORS(app, resources={r"*": {"origins": "*"}},
          supports_credentials=True)
+
+    '''
+  Initialize Authlib
+  '''
+    oauth = OAuth(app)
+
+    auth0 = oauth.register(
+        'auth0',
+        client_id='N4gqP1rOqGV21mRlIFiRBRhV81qhTdtb',
+        client_secret='',
+        api_base_url='https://sidelo.auth0.com',
+        access_token_url='https://sidelo.auth0.com/oauth/token',
+        authorize_url='https://sidelo.auth0.com/authorize',
+        client_kwargs={
+            'scope': 'openid profile email',
+        },
+    )
     '''
   after_request decorator to set Access-Control-Allow
   '''
@@ -58,8 +81,11 @@ def create_app(test_config=None):
     def get_rooms():
         try:
             rooms = Room.query.all()
+
             formated_rooms = [
                 room.format() for room in rooms]
+            if not formated_rooms or formated_rooms == []:
+                abort(404)
             return jsonify({
                 'success': True,
                 'rooms': formated_rooms
