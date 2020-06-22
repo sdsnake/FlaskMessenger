@@ -7,3 +7,4 @@ python-dotenv
 requests
 authlib
 six
+flask-login

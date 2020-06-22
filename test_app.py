@@ -76,13 +76,6 @@ class MessagorTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
 
-    def test_error_get_rooms(self):
-        res = self.client().get('/rooms/', json={})
-        data = json.loads(res.data)
-
-        self.assertEqual(res.status_code, 200)
-        self.assertEqual(data['success'], False)
-
     def test_delete_message(self):
         res = self.client().delete('/messages/6/')
         data = json.loads(res.data)
