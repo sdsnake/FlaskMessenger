@@ -18,12 +18,14 @@ class MessagorTestCase(unittest.TestCase):
         self.database_path = "postgres://{}:{}@{}/{}".format(
             'postgres', 'password', 'localhost:5432', self.database_name)
         setup_db(self.app, self.database_path)
+        self.token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkpaVDNQcWVKdmYxSTdqXy1mMzBGRCJ9.eyJpc3MiOiJodHRwczovL3NpZGVsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmMTEwNWNmYzc0YTIwMDE5ZDQ3ZjYyIiwiYXVkIjoibWVzc2Fnb3IiLCJpYXQiOjE1OTI5MDk3NTgsImV4cCI6MTU5MjkxNjk1OCwiYXpwIjoiRmhCUTVlaVozaXRwT2RQU2xPRjl6d1IwbEZkUHhOT1oiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTptZXNzYWdlcyIsImdldDptZXNzYWdlcyIsImdldDpyb29tcyIsInBhdGNoOm1lc3NhZ2VzIiwicG9zdDptZXNzYWdlcyJdfQ.UgBaIH3mY5zd19xt7aL_YRgn1iZeJJ8JmCPsDDoy3wLav4to-dycMM1IMFTS1w2LIDUWo-WhIOpVr5UUVPViwewVVLwdkf-Oi7gNPjfOOMKadc1XMOYC88YYY12wHqRgYoRW6b7soKDKM80ooDGe5gDWl4TksGH7KjrwwcaFUAF7khiTrk8kYCvMef-QkAnyDhVAohs5dcuIj8otgEx1fkqzaq8oZQuWuulHphq0thkVGCAes_Oy86VlKMZxaqPlYej0GY6-XKLjhv7KsZZsgpTGbqvbjw9HomcCgAcp9c4fXbD4yQeRtBgKXDuwq5Z-tpV8VtQn_ADIoGN7klDvmw"
 
         # binds the app to the current context
         with self.app.app_context():
             self.db = SQLAlchemy()
             self.db.init_app(self.app)
             # create all tables
+            self.db.drop_all()
             self.db.create_all()
 
     def tearDown(self):
@@ -32,9 +34,11 @@ class MessagorTestCase(unittest.TestCase):
 
     def test_create_new_message(self):
         new_message = {
-            'content': 'test'
+            "content": "test post",
+            "avatar": "diego"
         }
-        res = self.client().post('/rooms/1/messages/', json=new_message)
+        res = self.client().post('/rooms/1/messages/', headers={
+            "Authorization": "Bearer {}".format(self.token)}, json=new_message)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
@@ -45,7 +49,8 @@ class MessagorTestCase(unittest.TestCase):
         new_message = {
             'contnt': None
         }
-        res = self.client().post('/rooms/1/messages/', json=new_message)
+        res = self.client().post('/rooms/1/messages/', headers={
+            "Authorization": "Bearer {}".format(self.token)}, json=new_message)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 422)
@@ -53,7 +58,8 @@ class MessagorTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'unprocessable')
 
     def test_get_messages(self):
-        res = self.client().get('/rooms/1/messages/')
+        res = self.client().get('/rooms/1/messages/', headers={
+            "Authorization": "Bearer {}".format(self.token)})
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
@@ -62,7 +68,8 @@ class MessagorTestCase(unittest.TestCase):
         self.assertTrue(data['messages'])
 
     def test_error_get_messages(self):
-        res = self.client().get('/rooms/67/messages/')
+        res = self.client().get('/rooms/67/messages/', headers={
+            "Authorization": "Bearer {}".format(self.token)})
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 422)
@@ -70,14 +77,16 @@ class MessagorTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'unprocessable')
 
     def test_get_rooms(self):
-        res = self.client().get('/rooms/')
+        res = self.client().get('/rooms/', headers={
+            "Authorization": "Bearer {}".format(self.token)})
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
 
     def test_delete_message(self):
-        res = self.client().delete('/messages/6/')
+        res = self.client().delete('/messages/6/', headers={
+            "Authorization": "Bearer {}".format(self.token)})
         data = json.loads(res.data)
 
         message = Message.query.filter(Message.id == 6).one_or_none()
@@ -89,7 +98,8 @@ class MessagorTestCase(unittest.TestCase):
         self.assertEqual(message, None)
 
     def test_error_delete_message(self):
-        res = self.client().delete('/messages/99/')
+        res = self.client().delete('/messages/99/', headers={
+            "Authorization": "Bearer {}".format(self.token)})
         data = json.loads(res.data)
 
         message = Message.query.filter(Message.id == 99).one_or_none()
@@ -100,7 +110,8 @@ class MessagorTestCase(unittest.TestCase):
 
     def test_update_message(self):
         res = self.client().patch(
-            '/messages/5/', json={'content': 'test change'})
+            '/messages/5/', headers={
+            "Authorization": "Bearer {}".format(self.token)}, json={'content': 'test change'})
         data = json.loads(res.data)
         message = Message.query.filter(Message.id == 5).one_or_none()
 
@@ -110,7 +121,8 @@ class MessagorTestCase(unittest.TestCase):
 
     def test_error_update_message(self):
         res = self.client().patch(
-            '/messages/75/', json={'content': 'test error change'})
+            '/messages/75/', headers={
+            "Authorization": "Bearer {}".format(self.token)}, json={'content': 'test error change'})
         data = json.loads(res.data)
         message = Message.query.filter(Message.id == 5).one_or_none()
 
