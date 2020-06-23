@@ -18,7 +18,7 @@ class MessagorTestCase(unittest.TestCase):
         self.database_path = "postgres://{}:{}@{}/{}".format(
             'postgres', 'password', 'localhost:5432', self.database_name)
         setup_db(self.app, self.database_path)
-        self.token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkpaVDNQcWVKdmYxSTdqXy1mMzBGRCJ9.eyJpc3MiOiJodHRwczovL3NpZGVsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmMTEwNWNmYzc0YTIwMDE5ZDQ3ZjYyIiwiYXVkIjoibWVzc2Fnb3IiLCJpYXQiOjE1OTI5MDk3NTgsImV4cCI6MTU5MjkxNjk1OCwiYXpwIjoiRmhCUTVlaVozaXRwT2RQU2xPRjl6d1IwbEZkUHhOT1oiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTptZXNzYWdlcyIsImdldDptZXNzYWdlcyIsImdldDpyb29tcyIsInBhdGNoOm1lc3NhZ2VzIiwicG9zdDptZXNzYWdlcyJdfQ.UgBaIH3mY5zd19xt7aL_YRgn1iZeJJ8JmCPsDDoy3wLav4to-dycMM1IMFTS1w2LIDUWo-WhIOpVr5UUVPViwewVVLwdkf-Oi7gNPjfOOMKadc1XMOYC88YYY12wHqRgYoRW6b7soKDKM80ooDGe5gDWl4TksGH7KjrwwcaFUAF7khiTrk8kYCvMef-QkAnyDhVAohs5dcuIj8otgEx1fkqzaq8oZQuWuulHphq0thkVGCAes_Oy86VlKMZxaqPlYej0GY6-XKLjhv7KsZZsgpTGbqvbjw9HomcCgAcp9c4fXbD4yQeRtBgKXDuwq5Z-tpV8VtQn_ADIoGN7klDvmw"
+        self.token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkpaVDNQcWVKdmYxSTdqXy1mMzBGRCJ9.eyJpc3MiOiJodHRwczovL3NpZGVsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmMTEwNWNmYzc0YTIwMDE5ZDQ3ZjYyIiwiYXVkIjoibWVzc2Fnb3IiLCJpYXQiOjE1OTI5MTQwNjEsImV4cCI6MTU5MzAwMDQ2MSwiYXpwIjoiRmhCUTVlaVozaXRwT2RQU2xPRjl6d1IwbEZkUHhOT1oiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTptZXNzYWdlcyIsImdldDptZXNzYWdlcyIsImdldDpyb29tcyIsInBhdGNoOm1lc3NhZ2VzIiwicG9zdDptZXNzYWdlcyJdfQ.IVvS4X-sI5BnxaTwf7dehK94Z6wWRimLShbkgPL4-Ehh4O1YYEzTIClmHYh36M4DbyxiBqvehzX1fHVYnykGZeRG7TWX7oUN0yd_23uOnrrgQDiEy9merli2Syhl2Uzq1MWVJq5TD4fPgVGvnvUJhTJKj6SQ-MzUVghtfSOVhyHvVeTxQDeCMLFfim8o-iZuWTMll7K1qUVnrq2CmfhMh0h8jf31Z8tQr26OOHpFQ5133PyxDIRNcPj9P8i3PS_s5oUPxxl0e9R03qSnFCCtKr0PoEia2-nEzsQXEQNFkdkinujaPWhpQ7uEYMNmd6YD7rv-sIjXg8OgwheaSTGDLw"
 
         # binds the app to the current context
         with self.app.app_context():
@@ -84,6 +84,13 @@ class MessagorTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
 
+    def test_not_authorized_get_rooms(self):
+        res = self.client().get('/rooms/')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 401)
+        self.assertEqual(data['success'], False)
+
     def test_delete_message(self):
         res = self.client().delete('/messages/6/', headers={
             "Authorization": "Bearer {}".format(self.token)})
@@ -111,7 +118,7 @@ class MessagorTestCase(unittest.TestCase):
     def test_update_message(self):
         res = self.client().patch(
             '/messages/5/', headers={
-            "Authorization": "Bearer {}".format(self.token)}, json={'content': 'test change'})
+                "Authorization": "Bearer {}".format(self.token)}, json={'content': 'test change'})
         data = json.loads(res.data)
         message = Message.query.filter(Message.id == 5).one_or_none()
 
@@ -122,7 +129,7 @@ class MessagorTestCase(unittest.TestCase):
     def test_error_update_message(self):
         res = self.client().patch(
             '/messages/75/', headers={
-            "Authorization": "Bearer {}".format(self.token)}, json={'content': 'test error change'})
+                "Authorization": "Bearer {}".format(self.token)}, json={'content': 'test error change'})
         data = json.loads(res.data)
         message = Message.query.filter(Message.id == 5).one_or_none()
 
