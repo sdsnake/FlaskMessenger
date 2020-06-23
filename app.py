@@ -34,7 +34,7 @@ def create_app(test_config=None):
 
     @app.route('/', methods=['GET'])
     def get_home():
-        return "hello home"
+        return "hello welcome to messagor"
 
     @app.route('/rooms/<int:room_id>/messages/', methods=['GET'])
     @requires_auth('get:messages')
@@ -173,3 +173,9 @@ def create_app(test_config=None):
         }), error.status_code
 
     return app
+
+
+APP = create_app()
+
+if __name__ == '__main__':
+    APP.run(host='0.0.0.0', port=8080, debug=True)
