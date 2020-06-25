@@ -44,6 +44,13 @@ To run the server, execute:
 export FLASK_APP=app.py
 flask run
 ```
+
+## link for authentication: 
+
+https://sidelo.auth0.com/authorize?audience=messagor&response_type=token&client_id=FhBQ5eiZ3itpOdPSlOF9zwR0lFdPxNOZ&redirect_uri=https://localhost:8100/callback
+
+return the token in url.
+
 ## Models
 chat rooms contain name and messages 
 
