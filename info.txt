@@ -1,6 +1,3 @@
-https://sidelo.auth0.com/authorize?audience=messagor&response_type=token&
-  client_id=FhBQ5eiZ3itpOdPSlOF9zwR0lFdPxNOZ&redirect_uri=https://localhost:8100/callback
-
 https://sidelo.auth0.com/authorize?audience=messagor&response_type=token&client_id=FhBQ5eiZ3itpOdPSlOF9zwR0lFdPxNOZ&redirect_uri=https://localhost:8100/callback
 
 curl --request GET \
