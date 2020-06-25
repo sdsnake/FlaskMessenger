@@ -69,10 +69,12 @@ class Message(db.Model):
 
     id = Column(Integer, primary_key=True)
     content = Column(String)
+    avatar = Column(String)
     room_id = db.Column(db.Integer, db.ForeignKey('rooms.id'), nullable=False)
 
-    def __init__(self, content):
+    def __init__(self, content, avatar):
         self.content = content
+        self.avatar = avatar
 
     def insert(self):
         db.session.add(self)
@@ -88,5 +90,6 @@ class Message(db.Model):
     def format(self):
         return {
             'id': self.id,
-            'content': self.content
+            'content': self.content,
+            'avatar': self.avatar
         }

@@ -7,7 +7,7 @@ from urllib.request import urlopen
 
 AUTH0_DOMAIN = 'sidelo.auth0.com'
 ALGORITHMS = ['RS256']
-API_AUDIENCE = 'coffee'
+API_AUDIENCE = 'messagor'
 
 # AuthError Exception
 '''
@@ -158,6 +158,7 @@ def verify_decode_jwt(token):
                 'code': 'invalid_header',
                 'description': 'Unable to parse authentication token.'
             }, 400)
+        _request_ctx_stack.top.current_user = payload
     raise AuthError({
         'code': 'invalid_header',
                 'description': 'Unable to find the appropriate key.'

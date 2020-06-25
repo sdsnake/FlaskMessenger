@@ -2,12 +2,10 @@ import os
 from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS, cross_origin
-from sqlalchemy.sql.expression import func
-import random
 import json
 import sys
-
 from models import setup_db, Room, Message
+from authlib.integrations.flask_client import OAuth
 from auth import AuthError, requires_auth
 
 
@@ -21,6 +19,7 @@ def create_app(test_config=None):
   '''
     CORS(app, resources={r"*": {"origins": "*"}},
          supports_credentials=True)
+
     '''
   after_request decorator to set Access-Control-Allow
   '''
@@ -38,9 +37,12 @@ def create_app(test_config=None):
         return "hello home"
 
     @app.route('/rooms/<int:room_id>/messages/', methods=['GET'])
-    def get_messages(room_id):
+    @requires_auth('get:messages')
+    def get_messages(jwt, room_id):
         try:
             messages = Message.query.filter(Message.room_id == room_id).all()
+            if not messages:
+                abort(404)
             formated_messages = [
                 message.format() for message in messages]
             return jsonify({
@@ -52,39 +54,47 @@ def create_app(test_config=None):
             abort(422)
 
     @app.route('/rooms/', methods=['GET'])
-    def get_rooms():
+    @requires_auth('get:rooms')
+    def get_rooms(jwt):
         try:
             rooms = Room.query.all()
             formated_rooms = [
                 room.format() for room in rooms]
+            if rooms == []:
+                abort(404)
+            print(jwt)
             return jsonify({
                 'success': True,
                 'rooms': formated_rooms
             })
         except:
+            print(sys.exc_info())
             abort(422)
 
     @app.route('/rooms/<int:room_id>/messages/', methods=['POST'])
-    def new_message(room_id):
-        active_room = Room.query.get(room_id)
-        print(active_room)
-        print(room_id)
+    @requires_auth('post:messages')
+    def new_message(jwt, room_id):
         try:
+            active_room = Room.query.get(room_id)
             body = request.get_json()
-            content = body.get('content', None)
+            content = body.get('content')
+            avatar = body.get('avatar')
             print(content)
-            new_message = Message(content=content)
+            new_message = Message(content=content, avatar=avatar)
+            if content is None:
+                abort(422)
             new_message.room = active_room
             print(new_message.room)
             new_message.insert()
 
-            return jsonify({"success": True, "message": new_message.content})
+            return jsonify({"success": True, "avatar": new_message.avatar, "message": new_message.content})
         except:
             print(sys.exc_info())
             abort(422)
 
     @app.route('/messages/<int:message_id>/', methods=['PATCH'])
-    def update_message(message_id):
+    @requires_auth('patch:messages')
+    def update_message(jwt, message_id):
         body = request.get_json()
         try:
             message = Message.query.filter(
@@ -102,10 +112,13 @@ def create_app(test_config=None):
             abort(404)
 
     @app.route('/messages/<int:message_id>/', methods=['DELETE'])
-    def delete_message(message_id):
+    @requires_auth('delete:messages')
+    def delete_message(jwt, message_id):
         try:
             message = Message.query.filter(
                 Message.id == message_id).one_or_none()
+            if message is None:
+                abort(404)
             message.delete()
             messages = Message.query.filter(
                 Message.room_id == message.room_id).all()
