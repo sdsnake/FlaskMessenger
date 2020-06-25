@@ -63,4 +63,91 @@ post:messages
 patch:messages
 delete:messages
 
+### ENDPOINTS
 
+```
+
+GET '/rooms'
+
+return list rooms
+
+{
+    "rooms": [
+        {
+            "id": 1,
+            "name": "main"
+        }
+    ],
+    "success": true
+}
+
+GET '/rooms/<int:room_id>/messages'
+
+return messages list
+
+{
+    "messages": [
+        {
+            "avatar": "diego",
+            "content": "how are you?",
+            "id": 2
+        },
+        {
+            "avatar": "diego",
+            "content": "test",
+            "id": 3
+        },
+        {
+            "avatar": "diego",
+            "content": "test post3",
+            "id": 4
+        },
+        {
+            "avatar": "diego",
+            "content": "test post3",
+            "id": 5
+        },
+        {
+            "avatar": "samantha",
+            "content": "fine",
+            "id": 6
+        },
+        {
+            "avatar": "diego",
+            "content": "good",
+            "id": 7
+        }
+    ],
+    "success": true
+}
+
+POST '/rooms/<int:room_id>/messages'
+
+return name avatar and message posted with statut success
+
+{
+    "avatar": "diego",
+    "message": "Hi!",
+    "success": true
+}
+
+PATCH '/messages/<int:message_id>'
+
+return message modified and success
+
+{
+    "message": "change ok",
+    "success": true
+}
+
+DELETE '/messages/<int:message_id>'
+
+return ID and success
+
+{
+    "deleted": 1,
+    "messages": [],
+    "success": true
+}
+
+```
