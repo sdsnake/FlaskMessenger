@@ -44,11 +44,10 @@ To run the server, execute:
 export FLASK_APP=app.py
 flask run
 ```
-
-# Models
+## Models
 chat rooms contain name and messages 
 
-# Roles
+### Roles
 
 User or Chatter
 get:rooms
