@@ -1,7 +1,7 @@
 # FlaskMessenger
 FSND
 
-#Heroku url:http://messagor.herokuapp.com/
+#Heroku url: http://messagor.herokuapp.com/
 
 # Capstone Udacity - Full Stack API Final Project
 This project is to deploy a Flask application using Heroku and PostgreSQL and enable Role Based Authentication and roles-based access control git (RBAC) with Auth0 (third-party authentication systems).
@@ -44,3 +44,22 @@ To run the server, execute:
 export FLASK_APP=app.py
 flask run
 ```
+
+#Models
+chat rooms contain name and messages 
+
+#Roles
+User or Chatter
+
+get:rooms
+get:messages
+post:messages
+
+All permissions as Administrator
+get:rooms
+get:messages
+post:messages
+patch:messages
+delete:messages
+
+
