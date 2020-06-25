@@ -158,3 +158,10 @@ return ID and success
 }
 
 ```
+
+## Testing
+To run the tests go into root folder application and run in your terminal
+
+```
+python test_app.py
+```
