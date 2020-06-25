@@ -32,10 +32,14 @@ def create_app(test_config=None):
                              'GET,PUT,POST,DELETE,OPTIONS')
         return response
 
+
+    #ROUTES
+    #public path return a welcome message
     @app.route('/', methods=['GET'])
     def get_home():
         return "Welcome to messagor"
 
+    #get messages by room id
     @app.route('/rooms/<int:room_id>/messages', methods=['GET'])
     @requires_auth('get:messages')
     def get_messages(jwt, room_id):
@@ -53,6 +57,7 @@ def create_app(test_config=None):
             print(sys.exc_info())
             abort(422)
 
+    #return rooms list
     @app.route('/rooms', methods=['GET'])
     @requires_auth('get:rooms')
     def get_rooms(jwt):
@@ -71,6 +76,7 @@ def create_app(test_config=None):
             print(sys.exc_info())
             abort(422)
 
+    #create a new message
     @app.route('/rooms/<int:room_id>/messages', methods=['POST'])
     @requires_auth('post:messages')
     def new_message(jwt, room_id):
@@ -92,6 +98,7 @@ def create_app(test_config=None):
             print(sys.exc_info())
             abort(422)
 
+    #modify message by his id
     @app.route('/messages/<int:message_id>', methods=['PATCH'])
     @requires_auth('patch:messages')
     def update_message(jwt, message_id):
@@ -111,6 +118,7 @@ def create_app(test_config=None):
         except:
             abort(404)
 
+    #delete message by his id
     @app.route('/messages/<int:message_id>', methods=['DELETE'])
     @requires_auth('delete:messages')
     def delete_message(jwt, message_id):
