@@ -45,12 +45,12 @@ export FLASK_APP=app.py
 flask run
 ```
 
-#Models
+# Models
 chat rooms contain name and messages 
 
-#Roles
-User or Chatter
+# Roles
 
+User or Chatter
 get:rooms
 get:messages
 post:messages
