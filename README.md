@@ -158,6 +158,12 @@ return ID and success
 }
 
 ```
+## ERRORS
+The application retours this error:
+
+404: Resource not found
+422: unprocessable
+401 not authorized
 
 ## Testing
 To run the tests go into root folder application and run in your terminal
