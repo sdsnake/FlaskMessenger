@@ -1,0 +1,473 @@
+{
+	"info": {
+		"_postman_id": "7a672cd4-4a98-465c-9e48-1754f49df021",
+		"name": "finalflaskproject online",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "post message",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkpaVDNQcWVKdmYxSTdqXy1mMzBGRCJ9.eyJpc3MiOiJodHRwczovL3NpZGVsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmMTEwNWNmYzc0YTIwMDE5ZDQ3ZjYyIiwiYXVkIjoibWVzc2Fnb3IiLCJpYXQiOjE1OTMwOTE1MTUsImV4cCI6MTU5MzE3NzkxNSwiYXpwIjoiRmhCUTVlaVozaXRwT2RQU2xPRjl6d1IwbEZkUHhOT1oiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTptZXNzYWdlcyIsImdldDptZXNzYWdlcyIsImdldDpyb29tcyIsInBhdGNoOm1lc3NhZ2VzIiwicG9zdDptZXNzYWdlcyJdfQ.MUnx2fkOqvCkiAoHJ1OBkmlIUMzipOIso9JiGlp9UK6UET6BQpwuD4pLpD0-HJQuvZUPuO8pCQVW1WSAus6uvHnSyvJtwKwW24UGhTCw2up_GDeBNHEWHBbBHuQj9JiGa61K-7nvYPedbuZWy5PyuhvS-Df1HitD01o_yZh0Na7EDzNolczYmXytbPaZh3nc09QynW1rrqV27hMOTRCpHyDqjCLHbJqfoLHlTxepHZQrGO2gKL6gljRVaswpnU8ZX4sqJynCxNBN1F7ePiKoyWbT6GEbQPMPfG0qnEzpwU98bovWRULepUBgI-hc_HHg_yyU2ZCB2RZVtHor74taew",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"content\" : \"test post3\",\n\t\"avatar\" : \"diego\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://messagor.herokuapp.com/rooms/1/messages",
+					"protocol": "http",
+					"host": [
+						"messagor",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"rooms",
+						"1",
+						"messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get message",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkpaVDNQcWVKdmYxSTdqXy1mMzBGRCJ9.eyJpc3MiOiJodHRwczovL3NpZGVsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmMTEwNWNmYzc0YTIwMDE5ZDQ3ZjYyIiwiYXVkIjoibWVzc2Fnb3IiLCJpYXQiOjE1OTMwOTE1MTUsImV4cCI6MTU5MzE3NzkxNSwiYXpwIjoiRmhCUTVlaVozaXRwT2RQU2xPRjl6d1IwbEZkUHhOT1oiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTptZXNzYWdlcyIsImdldDptZXNzYWdlcyIsImdldDpyb29tcyIsInBhdGNoOm1lc3NhZ2VzIiwicG9zdDptZXNzYWdlcyJdfQ.MUnx2fkOqvCkiAoHJ1OBkmlIUMzipOIso9JiGlp9UK6UET6BQpwuD4pLpD0-HJQuvZUPuO8pCQVW1WSAus6uvHnSyvJtwKwW24UGhTCw2up_GDeBNHEWHBbBHuQj9JiGa61K-7nvYPedbuZWy5PyuhvS-Df1HitD01o_yZh0Na7EDzNolczYmXytbPaZh3nc09QynW1rrqV27hMOTRCpHyDqjCLHbJqfoLHlTxepHZQrGO2gKL6gljRVaswpnU8ZX4sqJynCxNBN1F7ePiKoyWbT6GEbQPMPfG0qnEzpwU98bovWRULepUBgI-hc_HHg_yyU2ZCB2RZVtHor74taew",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://messagor.herokuapp.com/rooms/1/messages",
+					"protocol": "http",
+					"host": [
+						"messagor",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"rooms",
+						"1",
+						"messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete message",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkpaVDNQcWVKdmYxSTdqXy1mMzBGRCJ9.eyJpc3MiOiJodHRwczovL3NpZGVsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmMTEwNWNmYzc0YTIwMDE5ZDQ3ZjYyIiwiYXVkIjoibWVzc2Fnb3IiLCJpYXQiOjE1OTMwOTE1MTUsImV4cCI6MTU5MzE3NzkxNSwiYXpwIjoiRmhCUTVlaVozaXRwT2RQU2xPRjl6d1IwbEZkUHhOT1oiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTptZXNzYWdlcyIsImdldDptZXNzYWdlcyIsImdldDpyb29tcyIsInBhdGNoOm1lc3NhZ2VzIiwicG9zdDptZXNzYWdlcyJdfQ.MUnx2fkOqvCkiAoHJ1OBkmlIUMzipOIso9JiGlp9UK6UET6BQpwuD4pLpD0-HJQuvZUPuO8pCQVW1WSAus6uvHnSyvJtwKwW24UGhTCw2up_GDeBNHEWHBbBHuQj9JiGa61K-7nvYPedbuZWy5PyuhvS-Df1HitD01o_yZh0Na7EDzNolczYmXytbPaZh3nc09QynW1rrqV27hMOTRCpHyDqjCLHbJqfoLHlTxepHZQrGO2gKL6gljRVaswpnU8ZX4sqJynCxNBN1F7ePiKoyWbT6GEbQPMPfG0qnEzpwU98bovWRULepUBgI-hc_HHg_yyU2ZCB2RZVtHor74taew",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://messagor.herokuapp.com/messages/7",
+					"protocol": "http",
+					"host": [
+						"messagor",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"messages",
+						"7"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "delete message",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://messagor.herokuapp.com/messages/6",
+							"protocol": "http",
+							"host": [
+								"messagor",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"messages",
+								"6"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "gunicorn/20.0.4"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Jun 2020 16:16:18 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "181"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type,Authorization,true"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET,PUT,POST,DELETE,OPTIONS"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"deleted\": 6,\n    \"messages\": [\n        {\n            \"avatar\": \"diego\",\n            \"content\": \"hi\",\n            \"id\": 7\n        },\n        {\n            \"avatar\": \"diego\",\n            \"content\": \"what's up?\",\n            \"id\": 8\n        },\n        {\n            \"avatar\": \"diego\",\n            \"content\": \"what's up?\",\n            \"id\": 9\n        }\n    ],\n    \"success\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "update message",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkpaVDNQcWVKdmYxSTdqXy1mMzBGRCJ9.eyJpc3MiOiJodHRwczovL3NpZGVsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmMTEwNWNmYzc0YTIwMDE5ZDQ3ZjYyIiwiYXVkIjoibWVzc2Fnb3IiLCJpYXQiOjE1OTMwOTE1MTUsImV4cCI6MTU5MzE3NzkxNSwiYXpwIjoiRmhCUTVlaVozaXRwT2RQU2xPRjl6d1IwbEZkUHhOT1oiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTptZXNzYWdlcyIsImdldDptZXNzYWdlcyIsImdldDpyb29tcyIsInBhdGNoOm1lc3NhZ2VzIiwicG9zdDptZXNzYWdlcyJdfQ.MUnx2fkOqvCkiAoHJ1OBkmlIUMzipOIso9JiGlp9UK6UET6BQpwuD4pLpD0-HJQuvZUPuO8pCQVW1WSAus6uvHnSyvJtwKwW24UGhTCw2up_GDeBNHEWHBbBHuQj9JiGa61K-7nvYPedbuZWy5PyuhvS-Df1HitD01o_yZh0Na7EDzNolczYmXytbPaZh3nc09QynW1rrqV27hMOTRCpHyDqjCLHbJqfoLHlTxepHZQrGO2gKL6gljRVaswpnU8ZX4sqJynCxNBN1F7ePiKoyWbT6GEbQPMPfG0qnEzpwU98bovWRULepUBgI-hc_HHg_yyU2ZCB2RZVtHor74taew",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"content\" : \"test change1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://messagor.herokuapp.com/messages/8",
+					"protocol": "http",
+					"host": [
+						"messagor",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"messages",
+						"8"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "update message",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"content\" : \"test change1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://messagor.herokuapp.com/messages/8",
+							"protocol": "http",
+							"host": [
+								"messagor",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"messages",
+								"8"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "gunicorn/20.0.4"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Jun 2020 16:17:06 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "42"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type,Authorization,true"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET,PUT,POST,DELETE,OPTIONS"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"test change1\",\n    \"success\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "get rooms",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkpaVDNQcWVKdmYxSTdqXy1mMzBGRCJ9.eyJpc3MiOiJodHRwczovL3NpZGVsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmMTEwNWNmYzc0YTIwMDE5ZDQ3ZjYyIiwiYXVkIjoibWVzc2Fnb3IiLCJpYXQiOjE1OTMwOTE1MTUsImV4cCI6MTU5MzE3NzkxNSwiYXpwIjoiRmhCUTVlaVozaXRwT2RQU2xPRjl6d1IwbEZkUHhOT1oiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTptZXNzYWdlcyIsImdldDptZXNzYWdlcyIsImdldDpyb29tcyIsInBhdGNoOm1lc3NhZ2VzIiwicG9zdDptZXNzYWdlcyJdfQ.MUnx2fkOqvCkiAoHJ1OBkmlIUMzipOIso9JiGlp9UK6UET6BQpwuD4pLpD0-HJQuvZUPuO8pCQVW1WSAus6uvHnSyvJtwKwW24UGhTCw2up_GDeBNHEWHBbBHuQj9JiGa61K-7nvYPedbuZWy5PyuhvS-Df1HitD01o_yZh0Na7EDzNolczYmXytbPaZh3nc09QynW1rrqV27hMOTRCpHyDqjCLHbJqfoLHlTxepHZQrGO2gKL6gljRVaswpnU8ZX4sqJynCxNBN1F7ePiKoyWbT6GEbQPMPfG0qnEzpwU98bovWRULepUBgI-hc_HHg_yyU2ZCB2RZVtHor74taew",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://messagor.herokuapp.com/rooms",
+					"protocol": "http",
+					"host": [
+						"messagor",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"rooms"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get rooms",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://messagor.herokuapp.com/rooms",
+							"protocol": "http",
+							"host": [
+								"messagor",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"rooms"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "gunicorn/20.0.4"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Jun 2020 15:45:27 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "55"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type,Authorization,true"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET,PUT,POST,DELETE,OPTIONS"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"rooms\": [\n        {\n            \"id\": 1,\n            \"name\": \"main room\"\n        }\n    ],\n    \"success\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "home",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://messagor.herokuapp.com/",
+					"protocol": "http",
+					"host": [
+						"messagor",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "home",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://messagor.herokuapp.com/",
+							"protocol": "http",
+							"host": [
+								"messagor",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "gunicorn/20.0.4"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Jun 2020 16:02:49 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "19"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type,Authorization,true"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET,PUT,POST,DELETE,OPTIONS"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "Welcome to messagor"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "1ed0e151-9eb5-4fb1-a659-ea12b8c32791",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ed1ebaa5-fdb7-41a0-a79d-6ca601d45227",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

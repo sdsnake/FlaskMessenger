@@ -34,9 +34,9 @@ def create_app(test_config=None):
 
     @app.route('/', methods=['GET'])
     def get_home():
-        return "hello home"
+        return "Welcome to messagor"
 
-    @app.route('/rooms/<int:room_id>/messages/', methods=['GET'])
+    @app.route('/rooms/<int:room_id>/messages', methods=['GET'])
     @requires_auth('get:messages')
     def get_messages(jwt, room_id):
         try:
@@ -53,7 +53,7 @@ def create_app(test_config=None):
             print(sys.exc_info())
             abort(422)
 
-    @app.route('/rooms/', methods=['GET'])
+    @app.route('/rooms', methods=['GET'])
     @requires_auth('get:rooms')
     def get_rooms(jwt):
         try:
@@ -71,7 +71,7 @@ def create_app(test_config=None):
             print(sys.exc_info())
             abort(422)
 
-    @app.route('/rooms/<int:room_id>/messages/', methods=['POST'])
+    @app.route('/rooms/<int:room_id>/messages', methods=['POST'])
     @requires_auth('post:messages')
     def new_message(jwt, room_id):
         try:
@@ -92,7 +92,7 @@ def create_app(test_config=None):
             print(sys.exc_info())
             abort(422)
 
-    @app.route('/messages/<int:message_id>/', methods=['PATCH'])
+    @app.route('/messages/<int:message_id>', methods=['PATCH'])
     @requires_auth('patch:messages')
     def update_message(jwt, message_id):
         body = request.get_json()
@@ -111,7 +111,7 @@ def create_app(test_config=None):
         except:
             abort(404)
 
-    @app.route('/messages/<int:message_id>/', methods=['DELETE'])
+    @app.route('/messages/<int:message_id>', methods=['DELETE'])
     @requires_auth('delete:messages')
     def delete_message(jwt, message_id):
         try:
@@ -170,3 +170,9 @@ def create_app(test_config=None):
         }), error.status_code
 
     return app
+
+
+APP = create_app()
+
+if __name__ == '__main__':
+    APP.run()
