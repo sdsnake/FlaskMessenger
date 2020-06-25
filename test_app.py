@@ -18,8 +18,8 @@ class MessagorTestCase(unittest.TestCase):
         self.database_path = "postgres://{}:{}@{}/{}".format(
             'postgres', 'password', 'localhost:5432', self.database_name)
         setup_db(self.app, self.database_path)
-        self.token_admin = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkpaVDNQcWVKdmYxSTdqXy1mMzBGRCJ9.eyJpc3MiOiJodHRwczovL3NpZGVsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmMTEwNWNmYzc0YTIwMDE5ZDQ3ZjYyIiwiYXVkIjoibWVzc2Fnb3IiLCJpYXQiOjE1OTMwOTE1MTUsImV4cCI6MTU5MzE3NzkxNSwiYXpwIjoiRmhCUTVlaVozaXRwT2RQU2xPRjl6d1IwbEZkUHhOT1oiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTptZXNzYWdlcyIsImdldDptZXNzYWdlcyIsImdldDpyb29tcyIsInBhdGNoOm1lc3NhZ2VzIiwicG9zdDptZXNzYWdlcyJdfQ.MUnx2fkOqvCkiAoHJ1OBkmlIUMzipOIso9JiGlp9UK6UET6BQpwuD4pLpD0-HJQuvZUPuO8pCQVW1WSAus6uvHnSyvJtwKwW24UGhTCw2up_GDeBNHEWHBbBHuQj9JiGa61K-7nvYPedbuZWy5PyuhvS-Df1HitD01o_yZh0Na7EDzNolczYmXytbPaZh3nc09QynW1rrqV27hMOTRCpHyDqjCLHbJqfoLHlTxepHZQrGO2gKL6gljRVaswpnU8ZX4sqJynCxNBN1F7ePiKoyWbT6GEbQPMPfG0qnEzpwU98bovWRULepUBgI-hc_HHg_yyU2ZCB2RZVtHor74taew"
-        self.token_user = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkpaVDNQcWVKdmYxSTdqXy1mMzBGRCJ9.eyJpc3MiOiJodHRwczovL3NpZGVsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVlZDJlODFjNmJhYzYwMDE5OTQ4NzBkIiwiYXVkIjoibWVzc2Fnb3IiLCJpYXQiOjE1OTMwOTQ2NDIsImV4cCI6MTU5MzE4MTA0MiwiYXpwIjoiRmhCUTVlaVozaXRwT2RQU2xPRjl6d1IwbEZkUHhOT1oiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImdldDptZXNzYWdlcyIsImdldDpyb29tcyIsInBvc3Q6bWVzc2FnZXMiXX0.Pr_VJQOO7NUGntfkIGxP1WdnfZD9zxdxW0FNFihwTk0bprq0Rs9Nqski-xSUCVRYMmjjIqvgKpaTmgIVDoSACRm6-r15fhGOINnbP2t_1eiXoCk_kvpXnvXYdl-d-QfAvkwZqHedtOgZ5Tlw5fN_hTcT0rdxiOTKbEY6FNMQN4LIsR6xF55nkcWAgPkIG_gKBZW-1vFbVrSiUq549jl4K9xklNYGrYtAKVNwjuBnz0Eh0JWuNYW0wNaOjmcfLmvebXizZsvan53Abf0sYnqat1wB6_AAglFKz5pwjLs3_dNZxFOEinO9hKRvHUj04og1riQgeI5-7iISpDurcRuK9w"
+        self.token_admin = os.environ['ADMIN_TOKEN']
+        self.token_user = os.environ['USER_TOKEN']
 
         # binds the app to the current context
         with self.app.app_context():
