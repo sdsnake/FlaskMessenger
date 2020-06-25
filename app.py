@@ -34,13 +34,12 @@ def create_app(test_config=None):
 
     @app.route('/', methods=['GET'])
     def get_home():
-        return "hello welcome to messagor"
+        return "hello home"
 
     @app.route('/rooms/<int:room_id>/messages/', methods=['GET'])
     @requires_auth('get:messages')
     def get_messages(jwt, room_id):
         try:
-
             messages = Message.query.filter(Message.room_id == room_id).all()
             if not messages:
                 abort(404)
@@ -75,10 +74,8 @@ def create_app(test_config=None):
     @app.route('/rooms/<int:room_id>/messages/', methods=['POST'])
     @requires_auth('post:messages')
     def new_message(jwt, room_id):
-        active_room = Room.query.get(room_id)
-        print(active_room)
-        print(room_id)
         try:
+            active_room = Room.query.get(room_id)
             body = request.get_json()
             content = body.get('content')
             avatar = body.get('avatar')
@@ -173,9 +170,3 @@ def create_app(test_config=None):
         }), error.status_code
 
     return app
-
-
-APP = create_app()
-
-if __name__ == '__main__':
-    APP.run(host='0.0.0.0', port=8080, debug=True)

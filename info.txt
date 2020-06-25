@@ -1,5 +1,7 @@
-https://sidelo.auth0.com/authorize?response_type=token&
-  client_id=FhBQ5eiZ3itpOdPSlOF9zwR0lFdPxNOZ&redirect_uri=http://localhost:8100/tabs/user-page
+https://sidelo.auth0.com/authorize?audience=messagor&response_type=token&
+  client_id=FhBQ5eiZ3itpOdPSlOF9zwR0lFdPxNOZ&redirect_uri=https://localhost:8100/callback
+
+https://sidelo.auth0.com/authorize?audience=messagor&response_type=token&client_id=FhBQ5eiZ3itpOdPSlOF9zwR0lFdPxNOZ&redirect_uri=https://localhost:8100/callback
 
 curl --request GET \
   --url 'https://sidelo.auth0.com/userinfo' \
@@ -14,3 +16,11 @@ curl --request GET \
 curl --request GET \
   --url 'https://sidelo.auth0.com/api/v2/users/auth0|5eed2e81c6bac6001994870d' \
   --header 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkpaVDNQcWVKdmYxSTdqXy1mMzBGRCJ9.eyJpc3MiOiJodHRwczovL3NpZGVsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVlZDJlODFjNmJhYzYwMDE5OTQ4NzBkIiwiYXVkIjoibWVzc2Fnb3IiLCJpYXQiOjE1OTI4NDA4NjAsImV4cCI6MTU5Mjg0ODA2MCwiYXpwIjoiRmhCUTVlaVozaXRwT2RQU2xPRjl6d1IwbEZkUHhOT1oiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImdldDpyb29tcyJdfQ.OhouEk-DAYLSxmAK-HuIn-o1qYBJfjN8UL541-rhwsaea3nu3XA5UwpGWJ66_WTjMiljzRYAqQY6bRl90jwhhii4QZ7VYYKgvpGk9nn_tjjXoUfsiR1lmOJGhtDgc023xwFfReTqn1LJzaojODFgNfYYukbaDr092NHoOXJzLMol9mEh9GqoX1FV2nXfdnaABs5qmtB3d6ZEcUWxOZDhMaQDgL-L_h_7odbsKccv18xQntJYO0KMJXghiBswZXGNpVa3eRKOLp3po6UlXrQnC-WJjV8-Q5sVh1iR6kkRlZfqjIHLGwASBT9_WPZjZqipDe3AZ6vYbJ_M8qfnuQ_lAQ'
+
+curl --request POST \
+  --url 'https://sidelo.auth0.com/oauth/token' \
+  --header 'content-type: application/x-www-form-urlencoded' \
+  --data grant_type=client_credentials \
+  --data 'client_id=FhBQ5eiZ3itpOdPSlOF9zwR0lFdPxNOZ' \
+  --data client_secret=659cPisScB4tE42P122UqRN06Ytgi8yjFQzenk4DXbgdPhUZAz0YRALqX7v_U-HQ \
+  --data 'audience=https://sidelo.auth0.com/api/v2/'
