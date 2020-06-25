@@ -49,12 +49,14 @@ chat rooms contain name and messages
 
 ### Roles
 
-User or Chatter
+User or Chatter.
+
 get:rooms
 get:messages
 post:messages
 
-All permissions as Administrator
+All permissions as Administrator.
+
 get:rooms
 get:messages
 post:messages
