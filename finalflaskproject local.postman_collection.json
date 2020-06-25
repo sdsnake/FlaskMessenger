@@ -1,0 +1,640 @@
+{
+	"info": {
+		"_postman_id": "4d350041-d6a8-44b5-9f98-43a5f5f0a89f",
+		"name": "finalflaskproject local",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "post message",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkpaVDNQcWVKdmYxSTdqXy1mMzBGRCJ9.eyJpc3MiOiJodHRwczovL3NpZGVsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmMTEwNWNmYzc0YTIwMDE5ZDQ3ZjYyIiwiYXVkIjoibWVzc2Fnb3IiLCJpYXQiOjE1OTMwOTE1MTUsImV4cCI6MTU5MzE3NzkxNSwiYXpwIjoiRmhCUTVlaVozaXRwT2RQU2xPRjl6d1IwbEZkUHhOT1oiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTptZXNzYWdlcyIsImdldDptZXNzYWdlcyIsImdldDpyb29tcyIsInBhdGNoOm1lc3NhZ2VzIiwicG9zdDptZXNzYWdlcyJdfQ.MUnx2fkOqvCkiAoHJ1OBkmlIUMzipOIso9JiGlp9UK6UET6BQpwuD4pLpD0-HJQuvZUPuO8pCQVW1WSAus6uvHnSyvJtwKwW24UGhTCw2up_GDeBNHEWHBbBHuQj9JiGa61K-7nvYPedbuZWy5PyuhvS-Df1HitD01o_yZh0Na7EDzNolczYmXytbPaZh3nc09QynW1rrqV27hMOTRCpHyDqjCLHbJqfoLHlTxepHZQrGO2gKL6gljRVaswpnU8ZX4sqJynCxNBN1F7ePiKoyWbT6GEbQPMPfG0qnEzpwU98bovWRULepUBgI-hc_HHg_yyU2ZCB2RZVtHor74taew",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"content\" : \"test post3\",\n\t\"avatar\" : \"diego\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/rooms/1/messages",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"rooms",
+						"1",
+						"messages"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "post message",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"content\" : \"test post3\",\n\t\"avatar\" : \"diego\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/rooms/1/messages",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"rooms",
+								"1",
+								"messages"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "57"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type,Authorization,true"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET,PUT,POST,DELETE,OPTIONS"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.15.2 Python/3.7.4"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Jun 2020 16:19:16 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"avatar\": \"diego\",\n    \"message\": \"test post3\",\n    \"success\": true\n}"
+				},
+				{
+					"name": "post message",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"content\" : \"test post3\",\n\t\"avatar\" : \"diego\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/rooms/1/messages",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"rooms",
+								"1",
+								"messages"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "57"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type,Authorization,true"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET,PUT,POST,DELETE,OPTIONS"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.15.2 Python/3.7.4"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Jun 2020 16:22:08 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"avatar\": \"diego\",\n    \"message\": \"test post3\",\n    \"success\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "get message",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkpaVDNQcWVKdmYxSTdqXy1mMzBGRCJ9.eyJpc3MiOiJodHRwczovL3NpZGVsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmMTEwNWNmYzc0YTIwMDE5ZDQ3ZjYyIiwiYXVkIjoibWVzc2Fnb3IiLCJpYXQiOjE1OTMwOTE1MTUsImV4cCI6MTU5MzE3NzkxNSwiYXpwIjoiRmhCUTVlaVozaXRwT2RQU2xPRjl6d1IwbEZkUHhOT1oiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTptZXNzYWdlcyIsImdldDptZXNzYWdlcyIsImdldDpyb29tcyIsInBhdGNoOm1lc3NhZ2VzIiwicG9zdDptZXNzYWdlcyJdfQ.MUnx2fkOqvCkiAoHJ1OBkmlIUMzipOIso9JiGlp9UK6UET6BQpwuD4pLpD0-HJQuvZUPuO8pCQVW1WSAus6uvHnSyvJtwKwW24UGhTCw2up_GDeBNHEWHBbBHuQj9JiGa61K-7nvYPedbuZWy5PyuhvS-Df1HitD01o_yZh0Na7EDzNolczYmXytbPaZh3nc09QynW1rrqV27hMOTRCpHyDqjCLHbJqfoLHlTxepHZQrGO2gKL6gljRVaswpnU8ZX4sqJynCxNBN1F7ePiKoyWbT6GEbQPMPfG0qnEzpwU98bovWRULepUBgI-hc_HHg_yyU2ZCB2RZVtHor74taew",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/rooms/1/messages",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"rooms",
+						"1",
+						"messages"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get message",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/rooms/1/messages",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"rooms",
+								"1",
+								"messages"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "326"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type,Authorization,true"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET,PUT,POST,DELETE,OPTIONS"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.15.2 Python/3.7.4"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Jun 2020 16:25:05 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"messages\": [\n        {\n            \"avatar\": \"diego\",\n            \"content\": \"test change1\",\n            \"id\": 2\n        },\n        {\n            \"avatar\": \"diego\",\n            \"content\": \"test post3\",\n            \"id\": 3\n        },\n        {\n            \"avatar\": \"diego\",\n            \"content\": \"test post3\",\n            \"id\": 4\n        },\n        {\n            \"avatar\": \"diego\",\n            \"content\": \"test post3\",\n            \"id\": 5\n        },\n        {\n            \"avatar\": \"diego\",\n            \"content\": \"test post3\",\n            \"id\": 6\n        },\n        {\n            \"avatar\": \"diego\",\n            \"content\": \"test post3\",\n            \"id\": 7\n        }\n    ],\n    \"success\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "delete message",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkpaVDNQcWVKdmYxSTdqXy1mMzBGRCJ9.eyJpc3MiOiJodHRwczovL3NpZGVsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmMTEwNWNmYzc0YTIwMDE5ZDQ3ZjYyIiwiYXVkIjoibWVzc2Fnb3IiLCJpYXQiOjE1OTMwOTE1MTUsImV4cCI6MTU5MzE3NzkxNSwiYXpwIjoiRmhCUTVlaVozaXRwT2RQU2xPRjl6d1IwbEZkUHhOT1oiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTptZXNzYWdlcyIsImdldDptZXNzYWdlcyIsImdldDpyb29tcyIsInBhdGNoOm1lc3NhZ2VzIiwicG9zdDptZXNzYWdlcyJdfQ.MUnx2fkOqvCkiAoHJ1OBkmlIUMzipOIso9JiGlp9UK6UET6BQpwuD4pLpD0-HJQuvZUPuO8pCQVW1WSAus6uvHnSyvJtwKwW24UGhTCw2up_GDeBNHEWHBbBHuQj9JiGa61K-7nvYPedbuZWy5PyuhvS-Df1HitD01o_yZh0Na7EDzNolczYmXytbPaZh3nc09QynW1rrqV27hMOTRCpHyDqjCLHbJqfoLHlTxepHZQrGO2gKL6gljRVaswpnU8ZX4sqJynCxNBN1F7ePiKoyWbT6GEbQPMPfG0qnEzpwU98bovWRULepUBgI-hc_HHg_yyU2ZCB2RZVtHor74taew",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/messages/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"messages",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update message",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkpaVDNQcWVKdmYxSTdqXy1mMzBGRCJ9.eyJpc3MiOiJodHRwczovL3NpZGVsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmMTEwNWNmYzc0YTIwMDE5ZDQ3ZjYyIiwiYXVkIjoibWVzc2Fnb3IiLCJpYXQiOjE1OTMwOTE1MTUsImV4cCI6MTU5MzE3NzkxNSwiYXpwIjoiRmhCUTVlaVozaXRwT2RQU2xPRjl6d1IwbEZkUHhOT1oiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTptZXNzYWdlcyIsImdldDptZXNzYWdlcyIsImdldDpyb29tcyIsInBhdGNoOm1lc3NhZ2VzIiwicG9zdDptZXNzYWdlcyJdfQ.MUnx2fkOqvCkiAoHJ1OBkmlIUMzipOIso9JiGlp9UK6UET6BQpwuD4pLpD0-HJQuvZUPuO8pCQVW1WSAus6uvHnSyvJtwKwW24UGhTCw2up_GDeBNHEWHBbBHuQj9JiGa61K-7nvYPedbuZWy5PyuhvS-Df1HitD01o_yZh0Na7EDzNolczYmXytbPaZh3nc09QynW1rrqV27hMOTRCpHyDqjCLHbJqfoLHlTxepHZQrGO2gKL6gljRVaswpnU8ZX4sqJynCxNBN1F7ePiKoyWbT6GEbQPMPfG0qnEzpwU98bovWRULepUBgI-hc_HHg_yyU2ZCB2RZVtHor74taew",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"content\" : \"test change1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/messages/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"messages",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "update message",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"content\" : \"test change1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/messages/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"messages",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "42"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type,Authorization,true"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET,PUT,POST,DELETE,OPTIONS"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.15.2 Python/3.7.4"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Jun 2020 16:07:57 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"test change1\",\n    \"success\": true\n}"
+				},
+				{
+					"name": "update message",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"content\" : \"test change1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/messages/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"messages",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "42"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type,Authorization,true"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET,PUT,POST,DELETE,OPTIONS"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.15.2 Python/3.7.4"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Jun 2020 16:07:57 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"test change1\",\n    \"success\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "get rooms",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkpaVDNQcWVKdmYxSTdqXy1mMzBGRCJ9.eyJpc3MiOiJodHRwczovL3NpZGVsby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVlZDJlODFjNmJhYzYwMDE5OTQ4NzBkIiwiYXVkIjoibWVzc2Fnb3IiLCJpYXQiOjE1OTMwODY5NTYsImV4cCI6MTU5MzE3MzM1NiwiYXpwIjoiRmhCUTVlaVozaXRwT2RQU2xPRjl6d1IwbEZkUHhOT1oiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImdldDptZXNzYWdlcyIsImdldDpyb29tcyIsInBvc3Q6bWVzc2FnZXMiXX0.NZ-psAzLF-O46ORMnCMkPaCn2NUJFBi99NKrUhEs6yqMZKvqVok-XzLsTnrRhFG6cv7ns6YNFyy0J1efgcqL1ojm-ByhO7hrPOn0hHKiaVkZvz0eXEtOVFn38VN--BSEJrC4aEhETPFa5gjHqyyxrsGCvAmSFqPRAK8DDEWa2D9AlmtYRBcLKUPi6KelqS6dClL_3MDhMb37473lyVcVBVs1MIN_zT5gDWmLbdBK0Jk7SE1VbPlz3PWqtlI1-ztsd19cUyVxKQ0SqlmvypJzPssvQQ7aSsWYZjrtu8o_JGCG5gIp485WoUJKhXEXX2exNqLcfnfHhF0-rA_X__qTrg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/rooms",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"rooms"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get rooms",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/rooms/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"rooms",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "50"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type,Authorization,true"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET,PUT,POST,DELETE,OPTIONS"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.15.2 Python/3.7.4"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Jun 2020 14:09:05 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"rooms\": [\n        {\n            \"id\": 1,\n            \"name\": \"main\"\n        }\n    ],\n    \"success\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "home",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "home",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "25"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type,Authorization,true"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET,PUT,POST,DELETE,OPTIONS"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.15.2 Python/3.7.4"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Jun 2020 08:58:26 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "hello welcome to messagor"
+				},
+				{
+					"name": "home",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "25"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type,Authorization,true"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET,PUT,POST,DELETE,OPTIONS"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.15.2 Python/3.7.4"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 25 Jun 2020 08:58:26 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "hello welcome to messagor"
+				}
+			]
+		}
+	],
+	"protocolProfileBehavior": {}
+}
