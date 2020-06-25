@@ -37,8 +37,12 @@ class MessagorTestCase(unittest.TestCase):
             "content": "test post",
             "avatar": "diego"
         }
-        res = self.client().post('/rooms/1/messages/', headers={
-            "Authorization": "Bearer {}".format(self.token_admin)}, json=new_message)
+        res = self.client().post(
+            '/rooms/1/messages/',
+            headers={
+                "Authorization": "Bearer {}".format(
+                    self.token_admin)},
+            json=new_message)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
@@ -49,8 +53,12 @@ class MessagorTestCase(unittest.TestCase):
         new_message = {
             'contnt': None
         }
-        res = self.client().post('/rooms/1/messages/', headers={
-            "Authorization": "Bearer {}".format(self.token_admin)}, json=new_message)
+        res = self.client().post(
+            '/rooms/1/messages/',
+            headers={
+                "Authorization": "Bearer {}".format(
+                    self.token_admin)},
+            json=new_message)
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 422)
@@ -125,8 +133,12 @@ class MessagorTestCase(unittest.TestCase):
 
     def test_update_message(self):
         res = self.client().patch(
-            '/messages/47/', headers={
-                "Authorization": "Bearer {}".format(self.token_admin)}, json={'content': 'test change'})
+            '/messages/47/',
+            headers={
+                "Authorization": "Bearer {}".format(
+                    self.token_admin)},
+            json={
+                'content': 'test change'})
         data = json.loads(res.data)
         message = Message.query.filter(Message.id == 47).one_or_none()
 
@@ -136,8 +148,12 @@ class MessagorTestCase(unittest.TestCase):
 
     def test_error_update_message(self):
         res = self.client().patch(
-            '/messages/755/', headers={
-                "Authorization": "Bearer {}".format(self.token_admin)}, json={'content': 'test error change'})
+            '/messages/755/',
+            headers={
+                "Authorization": "Bearer {}".format(
+                    self.token_admin)},
+            json={
+                'content': 'test error change'})
         data = json.loads(res.data)
         message = Message.query.filter(Message.id == 5).one_or_none()
 
@@ -147,8 +163,12 @@ class MessagorTestCase(unittest.TestCase):
 
     def test_non_aurthorized_update_message(self):
         res = self.client().patch(
-            '/messages/1/', headers={
-                "Authorization": "Bearer {}".format(self.token_user)}, json={'content': 'test error change'})
+            '/messages/1/',
+            headers={
+                "Authorization": "Bearer {}".format(
+                    self.token_user)},
+            json={
+                'content': 'test error change'})
         data = json.loads(res.data)
         message = Message.query.filter(Message.id == 5).one_or_none()
 

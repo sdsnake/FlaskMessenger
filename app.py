@@ -15,7 +15,8 @@ def create_app(test_config=None):
     setup_db(app)
 
     '''
-  CORS. Allow '*' for origins. Delete the sample route after completing the TODOs
+  CORS. Allow '*' for origins. Delete the sample route after
+  completing the TODOs
   '''
     CORS(app, resources={r"*": {"origins": "*"}},
          supports_credentials=True)
@@ -32,14 +33,13 @@ def create_app(test_config=None):
                              'GET,PUT,POST,DELETE,OPTIONS')
         return response
 
-
-    #ROUTES
-    #public path return a welcome message
+    # ROUTES
+    # public path return a welcome message
     @app.route('/', methods=['GET'])
     def get_home():
         return "Welcome to messagor"
 
-    #get messages by room id
+    # get messages by room id
     @app.route('/rooms/<int:room_id>/messages', methods=['GET'])
     @requires_auth('get:messages')
     def get_messages(jwt, room_id):
@@ -53,11 +53,11 @@ def create_app(test_config=None):
                 'success': True,
                 'messages': formated_messages
             })
-        except:
+        except BaseException:
             print(sys.exc_info())
             abort(422)
 
-    #return rooms list
+    # return rooms list
     @app.route('/rooms', methods=['GET'])
     @requires_auth('get:rooms')
     def get_rooms(jwt):
@@ -72,11 +72,11 @@ def create_app(test_config=None):
                 'success': True,
                 'rooms': formated_rooms
             })
-        except:
+        except BaseException:
             print(sys.exc_info())
             abort(422)
 
-    #create a new message
+    # create a new message
     @app.route('/rooms/<int:room_id>/messages', methods=['POST'])
     @requires_auth('post:messages')
     def new_message(jwt, room_id):
@@ -93,12 +93,14 @@ def create_app(test_config=None):
             print(new_message.room)
             new_message.insert()
 
-            return jsonify({"success": True, "avatar": new_message.avatar, "message": new_message.content})
-        except:
+            return jsonify({"success": True,
+                            "avatar": new_message.avatar,
+                            "message": new_message.content})
+        except BaseException:
             print(sys.exc_info())
             abort(422)
 
-    #modify message by his id
+    # modify message by his id
     @app.route('/messages/<int:message_id>', methods=['PATCH'])
     @requires_auth('patch:messages')
     def update_message(jwt, message_id):
@@ -115,10 +117,10 @@ def create_app(test_config=None):
                 'success': True,
                 'message': message.content
             })
-        except:
+        except BaseException:
             abort(404)
 
-    #delete message by his id
+    # delete message by his id
     @app.route('/messages/<int:message_id>', methods=['DELETE'])
     @requires_auth('delete:messages')
     def delete_message(jwt, message_id):
@@ -134,8 +136,10 @@ def create_app(test_config=None):
             formated_messages = [
                 message.format() for message in messages]
 
-            return jsonify({"success": True, 'deleted': message_id, "messages": formated_messages})
-        except:
+            return jsonify({"success": True,
+                            'deleted': message_id,
+                            "messages": formated_messages})
+        except BaseException:
             print(sys.exc_info())
             abort(422)
 
